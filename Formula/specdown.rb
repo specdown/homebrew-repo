@@ -5,9 +5,9 @@ class Specdown < Formula
   sha256 "8993108d74640dc0cb2418832ec0f9f677d652bfb9d19959fb97499ad1cfb5a3"
 
   bottle do
-    root_url "https://github.com/PurpleBooth/homebrew-repo/releases/download/specdown-0.43.0"
-    sha256 cellar: :any_skip_relocation, catalina:     "fbbc4eaceeadf79f05a8d7ffe9c9b73892f0830ac376b3f62e610d79d3d51263"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "6cb3b41a8a23a5b3da26f0553205ab2add08b35ffaad393fa6d6e8065a7d5399"
+    root_url "https://github.com/specdown/homebrew-repo/releases/download/specdown-0.43.0"
+    sha256 cellar: :any_skip_relocation, catalina:     "151367da3346027fdd564d78999c9f071808a734b23dbb64085a542261e5be02"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "3e7bfe1903d00b9168710431ae440eabd99684171ea7aca5706f4dd647b1e049"
   end
 
   depends_on "rust" => :build
