@@ -1,0 +1,18 @@
+queue_rules:
+- name: default
+  conditions:
+  - status-success=test-bot (ubuntu-latest)
+  - status-success=test-bot (macos-latest)
+
+pull_request_rules:
+- name: automatic rebase for releases
+  conditions:
+  - status-success=test-bot (ubuntu-latest)
+  - status-success=test-bot (macos-latest)
+  - base=main
+  - label=releases
+  - author=tomphp
+  actions:
+    label:
+      add:
+      - pr-pull
