@@ -4,6 +4,12 @@ class Specdown < Formula
   url "https://github.com/specdown/specdown/archive/v0.55.4.tar.gz"
   sha256 "6cee9aae401c20f21308cc8024efb7558be0fe89e7ac69e69336591826a4a3d7"
 
+  bottle do
+    root_url "https://github.com/specdown/homebrew-repo/releases/download/specdown-0.55.4"
+    sha256 cellar: :any_skip_relocation, catalina:     "da7b1da578205806b4bc47b0350e0845f8fc26f29e127c037676aa3a96bf3c2f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "0a5dc81e0efea05b20177af301d72027a837a7f557398af89410877b9db91b7a"
+  end
+
   depends_on "rust" => :build
 
   resource("testdata") do
