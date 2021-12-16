@@ -1,19 +1,13 @@
 class Specdown < Formula
   desc "Use your markdown documentation as tests"
   homepage "https://github.com/specdown/specdown"
-  url "https://github.com/specdown/specdown/archive/v1.1.1.tar.gz"
-  sha256 "4e2b78216a10455051bc065f50abc3df3b2168d46d44a51885ce82fb91a87c01"
-
-  bottle do
-    root_url "https://github.com/specdown/homebrew-repo/releases/download/specdown-1.1.1"
-    sha256 cellar: :any_skip_relocation, catalina:     "fe0bb95265e00801b2d409281f541ff6d571e0a966ea0f40a4076c52b007670a"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "80ee93374a0ec78b43a462be4544fb1f5f13374565fb7272256db9c96f393f45"
-  end
+  url "https://github.com/specdown/specdown/archive/v1.1.2.tar.gz"
+  sha256 "161c12a86f0429601104dcb531fb231cb39f327ae89983dbd0568c535a8bf913"
 
   depends_on "rust" => :build
 
   resource("testdata") do
-    url "https://raw.githubusercontent.com/specdown/specdown/v1.1.1/README.md"
+    url "https://raw.githubusercontent.com/specdown/specdown/v1.1.2/README.md"
     sha256 "a9f658b79fbcb4b13f85cca439cd6e55a2d43a4ad47a05578c28e9c7f88bb8c0"
   end
 
