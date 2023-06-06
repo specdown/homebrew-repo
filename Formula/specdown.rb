@@ -1,21 +1,21 @@
 class Specdown < Formula
   desc "Use your markdown documentation as tests"
   homepage "https://github.com/specdown/specdown"
-  url "https://github.com/specdown/specdown/archive/v1.2.41.tar.gz"
-  sha256 "1718f0ec18fb8d18c1cf71de6880d3d7eabe4d9eff35f269c376eb39018d0154"
+  url "https://github.com/specdown/specdown/archive/v1.2.51.tar.gz"
+  sha256 "ba5e7c85ab014a30656378aac53bdeb3056f9d9109ef2d6e3bb23ab4859db8cd"
 
   depends_on "help2man" => :build
   depends_on "rust" => :build
 
   resource("testdata") do
-    url "https://raw.githubusercontent.com/specdown/specdown/v1.2.41/README.md"
+    url "https://raw.githubusercontent.com/specdown/specdown/v1.2.51/README.md"
     sha256 "a9f658b79fbcb4b13f85cca439cd6e55a2d43a4ad47a05578c28e9c7f88bb8c0"
   end
 
   def install
     system "cargo", "install", "--locked", "--root", prefix, "--path", "."
 
-    generate_completions_from_executable(bin/"specdown", "--completion", shells: [
+    generate_completions_from_executable(bin/"specdown", "completion", shells: [
       :bash,
       :fish,
       :zsh,
