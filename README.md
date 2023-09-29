@@ -2,9 +2,9 @@
 
 ## How do I install these formulae?
 
-`brew install specdown/repo/<formula>`
+`brew install specdown/homebrew-repo/<formula>`
 
-Or `brew tap specdown/repo` and then `brew install <formula>`.
+Or `brew tap specdown/homebrew-repo` and then `brew install <formula>`.
 
 ## Documentation
 
