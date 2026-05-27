@@ -1,25 +1,51 @@
 class Specdown < Formula
   desc "Use your markdown documentation as tests"
   homepage "https://github.com/specdown/specdown"
-  url "https://github.com/specdown/specdown/archive/refs/tags/v1.2.98.tar.gz"
-  sha256 "12098ae464382d8ec2cec7602acdf2f69d0d2b22667eca9955500edab402d372"
+  version "1.3.3"
+  license "Apache-2.0"
+  depends_on "help2man" => :build
 
-  bottle do
-    root_url "https://github.com/specdown/homebrew-repo/releases/download/specdown-1.2.98"
-    sha256 cellar: :any_skip_relocation, ventura:      "77c0be293fb31f0cfc7c8e76d199e3fd71fcf8e06e3fb6c335305c8708fa6fbe"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "fd1dfaf27aa2b7f4531762c75fbf83603c8fd2906e8c74cfafde92a92a49d7e0"
+  on_macos do
+    on_arm do
+      url "https://github.com/specdown/specdown/releases/download/v1.3.3/specdown-aarch64-apple-darwin"
+      sha256 "bd6bfc3370a9c859c097921aa15d855988920b922d41373aee120542ed168a9a"
+    end
+    on_intel do
+      url "https://github.com/specdown/specdown/releases/download/v1.3.3/specdown-x86_64-apple-darwin"
+      sha256 "707a8fdc56159aaf1892592d2e7fee90e01560f8e318e0d3eae03188a7785158"
+    end
   end
 
-  depends_on "help2man" => :build
-  depends_on "rust" => :build
+  on_linux do
+    on_intel do
+      url "https://github.com/specdown/specdown/releases/download/v1.3.3/specdown-x86_64-unknown-linux-gnu"
+      sha256 "8c91a5e19d60379d6322002708b348942037a375e7232759e066fcebc58f2018"
+    end
+    on_arm do
+      url "https://github.com/specdown/specdown/releases/download/v1.3.3/specdown-aarch64-unknown-linux-gnu"
+      sha256 "c30c535b477743cac8400b8ff556d34f7b939deb45e70bc08cf6bd5e5f774b33"
+    end
+  end
 
   resource("testdata") do
-    url "https://raw.githubusercontent.com/specdown/specdown/v1.2.98/README.md"
-    sha256 "fa7dc4903d8d114032b7fcb424f2dd112d520063faa5df00b396b8726efc2589"
+    url "https://raw.githubusercontent.com/specdown/specdown/v1.3.3/README.md"
+    sha256 "b4a0f54551331989fc3f4776188dfcbb901da2e2ff511cd801ba6d30fb662e8c"
   end
 
   def install
-    system "cargo", "install", "--locked", "--root", prefix, "--path", "."
+    if OS.mac?
+      if Hardware::CPU.arm?
+        bin.install "specdown-aarch64-apple-darwin" => "specdown"
+      elsif Hardware::CPU.intel?
+        bin.install "specdown-x86_64-apple-darwin" => "specdown"
+      end
+    elsif OS.linux?
+      if Hardware::CPU.intel?
+        bin.install "specdown-x86_64-unknown-linux-gnu" => "specdown"
+      elsif Hardware::CPU.arm?
+        bin.install "specdown-aarch64-unknown-linux-gnu" => "specdown"
+      end
+    end
 
     generate_completions_from_executable(bin/"specdown", "completion", shells: [
       :bash,
