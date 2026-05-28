@@ -1,7 +1,6 @@
 class Specdown < Formula
   desc "Use your markdown documentation as tests"
   homepage "https://github.com/specdown/specdown"
-  version "1.3.3"
   license "Apache-2.0"
   depends_on "help2man" => :build
 
