@@ -6,28 +6,28 @@ class Specdown < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/specdown/specdown/releases/download/v1.3.3/specdown-aarch64-apple-darwin"
-      sha256 "bd6bfc3370a9c859c097921aa15d855988920b922d41373aee120542ed168a9a"
+      url "https://github.com/specdown/specdown/releases/download/v1.5.2/specdown-aarch64-apple-darwin"
+      sha256 "830d479328e0343c66552d862b9e5093016837ba985c50618858d2a5389e7bc1"
     end
     on_intel do
-      url "https://github.com/specdown/specdown/releases/download/v1.3.3/specdown-x86_64-apple-darwin"
-      sha256 "707a8fdc56159aaf1892592d2e7fee90e01560f8e318e0d3eae03188a7785158"
+      url "https://github.com/specdown/specdown/releases/download/v1.5.2/specdown-x86_64-apple-darwin"
+      sha256 "f5901be1b50bd1a8a08c37569265eff39d5c5550ff47f92264f45d7190225074"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/specdown/specdown/releases/download/v1.3.3/specdown-x86_64-unknown-linux-gnu"
-      sha256 "8c91a5e19d60379d6322002708b348942037a375e7232759e066fcebc58f2018"
+      url "https://github.com/specdown/specdown/releases/download/v1.5.2/specdown-x86_64-unknown-linux-gnu"
+      sha256 "cf1ceba430f29bcaeb4e936f49b312a6140a5f04e656f34cbb38e96c31f40d3c"
     end
     on_arm do
-      url "https://github.com/specdown/specdown/releases/download/v1.3.3/specdown-aarch64-unknown-linux-gnu"
-      sha256 "c30c535b477743cac8400b8ff556d34f7b939deb45e70bc08cf6bd5e5f774b33"
+      url "https://github.com/specdown/specdown/releases/download/v1.5.2/specdown-aarch64-unknown-linux-gnu"
+      sha256 "7e5185bb9118857b00bc46d43be7034f36406832692a200a015c6daae3eecb3d"
     end
   end
 
   resource("testdata") do
-    url "https://raw.githubusercontent.com/specdown/specdown/v1.3.3/README.md"
+    url "https://raw.githubusercontent.com/specdown/specdown/v1.5.2/README.md"
     sha256 "b4a0f54551331989fc3f4776188dfcbb901da2e2ff511cd801ba6d30fb662e8c"
   end
 
