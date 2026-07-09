@@ -1,0 +1,5 @@
+# `brew test-bot` scratch output
+bottle_output.txt
+linkage_output.txt
+skipped_or_failed_formulae-*.txt
+*.bottle.*

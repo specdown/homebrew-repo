@@ -8,36 +8,35 @@ jobs:
   test-bot:
     strategy:
       matrix:
-        os:
-          - ubuntu-24.04
-          - ubuntu-24.04-arm
-          - macos-26-intel
-          - macos-26
+        include:
+          - os: macos-26
+          - os: macos-26-intel
+          - os: ubuntu-latest
+            container: ghcr.io/homebrew/brew:main
+          - os: ubuntu-24.04-arm
+            container: ghcr.io/homebrew/brew:main
+    # Without this the container image ends up in the check name, which Mergify matches on.
+    name: test-bot (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
+    container: ${{ matrix.container }}
+    permissions:
+      actions: read
+      checks: read
+      contents: read
+      pull-requests: read
     steps:
       - name: Set up Homebrew
         id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@master
+        uses: Homebrew/actions/setup-homebrew@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cache Homebrew Bundler RubyGems
-        id: cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ steps.set-up-homebrew.outputs.gems-path }}
-          key: ${{ runner.os }}-${{ runner.arch }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
-          restore-keys: ${{ runner.os }}-${{ runner.arch }}-rubygems-
-
-      - name: Install Homebrew Bundler RubyGems
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: brew install-bundler-gems
-
-      - name: Install bubblewrap (Linux sandbox requirement)
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt-get install -y bubblewrap
-          sudo sysctl -w kernel.unprivileged_userns_clone=1 || true
-          sudo sysctl -w user.max_user_namespaces=28633 || true
-          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || true
+          key: ${{ matrix.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
+          restore-keys: ${{ matrix.os }}-rubygems-
 
       - run: brew test-bot --only-cleanup-before
 
@@ -48,9 +47,21 @@ jobs:
       - run: brew test-bot --only-formulae
         if: github.event_name == 'pull_request'
 
+      # test-bot reports a failed install as a "skipped" formula, and stays green, when
+      # the formula has no bottle for the version under test -- which is always true of
+      # a version bump. Install and test it ourselves so breakage is always caught.
+      - name: Verify the formula installs and passes its test
+        if: github.event_name == 'pull_request'
+        env:
+          # This tap is the repository under test, so loading it needs no confirmation.
+          HOMEBREW_NO_REQUIRE_TAP_TRUST: 1
+        run: |
+          brew install --formula --verbose "$GITHUB_REPOSITORY/specdown"
+          brew test --verbose "$GITHUB_REPOSITORY/specdown"
+
       - name: Upload bottles as artifact
         if: always() && github.event_name == 'pull_request'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
-          name: bottles_${{matrix.os}}
+          name: bottles_${{ matrix.os }}
           path: '*.bottle.*'
