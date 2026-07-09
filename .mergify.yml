@@ -1,7 +1,7 @@
 queue_rules:
   - name: default
     merge_conditions:
-      - status-success=test-bot (ubuntu-24.04)
+      - status-success=test-bot (ubuntu-latest)
       - status-success=test-bot (ubuntu-24.04-arm)
       - status-success=test-bot (macos-26-intel)
       - status-success=test-bot (macos-26)
@@ -9,7 +9,7 @@ queue_rules:
 pull_request_rules:
   - name: automatic rebase for releases
     conditions:
-      - status-success=test-bot (ubuntu-24.04)
+      - status-success=test-bot (ubuntu-latest)
       - status-success=test-bot (ubuntu-24.04-arm)
       - status-success=test-bot (macos-26-intel)
       - status-success=test-bot (macos-26)
