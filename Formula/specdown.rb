@@ -4,6 +4,14 @@ class Specdown < Formula
   license "Apache-2.0"
   version_scheme 1
 
+  bottle do
+    root_url "https://github.com/specdown/homebrew-repo/releases/download/specdown-1.8.0"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:  "7b5c7db442de27cc45ce8ed82ae07149fecbdd069630c49c380d5c7ad9697105"
+    sha256 cellar: :any_skip_relocation, tahoe:        "66c5fbe4be31818bd52eb4a829527b25f6537e7ba62adddb6c94d93775971d90"
+    sha256 cellar: :any_skip_relocation, arm64_linux:  "19db3fa277021aa674485706093166a3070147929f28225445b8065f568c90c5"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "d101c58a612e37da644d685d7f25da3ed64ec35853bb5f1b002af2fc2fb52d07"
+  end
+
   on_macos do
     on_arm do
       url "https://github.com/specdown/specdown/releases/download/v1.8.0/specdown-aarch64-apple-darwin"
