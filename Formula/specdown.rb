@@ -4,40 +4,32 @@ class Specdown < Formula
   license "Apache-2.0"
   version_scheme 1
 
-  bottle do
-    root_url "https://github.com/specdown/homebrew-repo/releases/download/specdown-1.9.2"
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:  "7c8d28e36582866685e4ea8a1e19b2990c175f112a6464bed6a59afce3b726c6"
-    sha256 cellar: :any_skip_relocation, tahoe:        "9590a8e10396b42c580007ead0d78bab617c43740181a97f799396943f3f62da"
-    sha256 cellar: :any_skip_relocation, arm64_linux:  "074ff080edd458bf38502a49b8454e506ce3b6bfb633191ddbaee1c384ec2595"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "e54796be3d37305b755a5e2d58cac4f9da46a6cbe9e00fb702d911c49dba1edb"
-  end
-
   on_macos do
     on_arm do
-      url "https://github.com/specdown/specdown/releases/download/v1.9.2/specdown-aarch64-apple-darwin"
-      sha256 "c5fa434d73455fc5d2f595d96c991f07738a66279a935d0a1ef9ec97d48ec15e"
+      url "https://github.com/specdown/specdown/releases/download/v1.9.3/specdown-aarch64-apple-darwin"
+      sha256 "c6c51f5bddcfa77f15e19a6b90b9afdad2b8627a83b4a4e77bf35b835f8146d9"
     end
     on_intel do
-      url "https://github.com/specdown/specdown/releases/download/v1.9.2/specdown-x86_64-apple-darwin"
-      sha256 "76a7519a955541f7769db948b64a3b6cbb0f28482a36e9819c224b018edababe"
-      version "1.9.2"
+      url "https://github.com/specdown/specdown/releases/download/v1.9.3/specdown-x86_64-apple-darwin"
+      sha256 "dbb177960a88a98fb5009cba9a3c46500552ead27dc915eb4312bdcab113cbef"
+      version "1.9.3"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/specdown/specdown/releases/download/v1.9.2/specdown-x86_64-unknown-linux-gnu"
-      sha256 "1f403a1616a0c5eefeb91cc08998ad0b6ad462a557a216be93e08d2cca60d0ad"
-      version "1.9.2"
+      url "https://github.com/specdown/specdown/releases/download/v1.9.3/specdown-x86_64-unknown-linux-gnu"
+      sha256 "2b8dfdc2d950ae9bcc89f174a8ebe812439c116b7f36984c9066c7d39fa512db"
+      version "1.9.3"
     end
     on_arm do
-      url "https://github.com/specdown/specdown/releases/download/v1.9.2/specdown-aarch64-unknown-linux-gnu"
-      sha256 "87465553f15ef8f7d55dff9d879e499a78887b6bcdbe1985b565465482a05057"
+      url "https://github.com/specdown/specdown/releases/download/v1.9.3/specdown-aarch64-unknown-linux-gnu"
+      sha256 "5d5a09aa2ecbf1c5734160b95445bd4ef0ec494cc5d95bd55b265f29578da65c"
     end
   end
 
   resource("testdata") do
-    url "https://raw.githubusercontent.com/specdown/specdown/v1.9.2/README.md"
+    url "https://raw.githubusercontent.com/specdown/specdown/v1.9.3/README.md"
     sha256 "2b19ae63dd39b0ddd5385822b8e4783509fe5ff465eace3501094058c130019f"
   end
 
